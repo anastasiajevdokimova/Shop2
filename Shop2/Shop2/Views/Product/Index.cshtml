@@ -1,5 +1,8 @@
-﻿@model IEnumerable<Shop2.Models.Product.ProductListViewModel> 
+﻿@model IEnumerable<Shop2.Models.Product.ProductListViewModel>
 
+@{
+    int queueNumber = 0;
+}
 <div>
     <a asp-action="add" asp-controller="product" type="submit" class="btn btn-danger">Add</a>
 </div>
@@ -18,13 +21,18 @@
         <tbody>
             @foreach (var product in Model)
             {
-            <tr>
-                <td class=""></td>
-                <td class="">@product.Name</td>
-                <td class="">@product.Description</td>
-                <td class="">@product.Price</td>
-                <td class="">@product.Ammount</td>
-            </tr>
+                queueNumber++;
+
+                <tr>
+                    <td class="">@queueNumber</td>
+                    <td class="">@product.Name</td>
+                    <td class="">@product.Description</td>
+                    <td class="">@product.Price</td>
+                    <td class="">@product.Ammount</td>
+                    <td>
+                        <input asp-action="delete" asp-controller="product" asp-route-id="@product.Id" type="submit" class="btn btn-danger" value="Delete">
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
