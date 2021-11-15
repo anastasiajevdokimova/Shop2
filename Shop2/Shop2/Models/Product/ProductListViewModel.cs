@@ -13,7 +13,7 @@ namespace Shop2.Models.Product
         public double Price { get; set; }
         public int Ammount { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime ModifiedAt { get; set }
+        public DateTime ModifiedAt { get; set; }
 
     }
 }
