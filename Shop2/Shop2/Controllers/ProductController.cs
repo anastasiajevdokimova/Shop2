@@ -48,5 +48,11 @@ namespace Shop2.Controllers
             }
             return RedirectToAction(nameof(Index), product);
         }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View("Edit");
+        }
     }
 }
