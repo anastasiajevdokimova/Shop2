@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Shop2.Core\Shop2.Core.csproj" />
+    <ProjectReference Include="..\Shop2.Data\Shop2.Data.csproj" />
   </ItemGroup>
 
 </Project>

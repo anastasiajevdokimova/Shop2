@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Shop2.Core.ServiceInterface
 {
-    public interface ServiceInterface
+    public interface IProductService
     {
         Task<Product> Delete(Guid id);
     }

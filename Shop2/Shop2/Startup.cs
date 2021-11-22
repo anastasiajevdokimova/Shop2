@@ -5,7 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Shop2.Controllers;
+using Shop2.Core.ServiceInterface;
 using Shop2.Data;
+using Shop2.ApplicationServices.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +33,8 @@ namespace Shop2
 
             services.AddDbContext<Shop2DbContext>(options =>
             options.UseSqlServer(_config["DefaultConnection"]));
+
+            services.AddScoped<IProductService, ProductServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
