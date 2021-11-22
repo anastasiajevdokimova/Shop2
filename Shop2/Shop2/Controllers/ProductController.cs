@@ -80,5 +80,31 @@ namespace Shop2.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var product = await _productService.Edit(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            var model = new ProductViewModel();
+
+            var dto = new ProductDto()
+            {
+                Id = model.Id,
+                Description = model.Description,
+                Name = model.Name,
+                Ammount = model.Ammount,
+                Price = model.Price,
+                ModifiedAt = model.ModifiedAt,
+                CreatedAt = model.CreatedAt
+            };
+
+            return View(model);
+        }
     }
 }

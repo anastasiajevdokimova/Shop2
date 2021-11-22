@@ -41,8 +41,8 @@ namespace Shop2.ApplicationServices.Services
                 Name = dto.Name,
                 Ammount = dto.Ammount,
                 Price = dto.Price,
-                ModifiedAt = dto.ModifiedAt,
-                CreatedAt = dto.CreatedAt
+                ModifiedAt = DateTime.Now,
+                CreatedAt = DateTime.Now
             };
 
             await _context.Product.AddAsync(domain);
@@ -50,5 +50,27 @@ namespace Shop2.ApplicationServices.Services
 
             return domain;
         }
+
+        public async Task<Product> Edit(Guid id)
+        {
+            var result = await _context.Product
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            var dto = new ProductDto();
+
+            var domain = new Product()
+            {
+                Id = dto.Id,
+                Description = dto.Description,
+                Name = dto.Name,
+                Ammount = dto.Ammount,
+                Price = dto.Price,
+                ModifiedAt = DateTime.Now,
+                CreatedAt = dto.CreatedAt
+            };
+
+            return domain;
+        }
+
     }
 }
