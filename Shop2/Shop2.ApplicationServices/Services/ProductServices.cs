@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Shop2.Core.Domain;
+using Shop2.Core.Dtos;
 using Shop2.Core.ServiceInterface;
 using Shop2.Data;
 
@@ -29,6 +30,25 @@ namespace Shop2.ApplicationServices.Services
             await _context.SaveChangesAsync();
 
             return productId;
+        }
+
+        public async Task<Product> Add(ProductDto dto)
+        {
+            var domain = new Product()
+            {
+                Id = dto.Id,
+                Description = dto.Description,
+                Name = dto.Name,
+                Ammount = dto.Ammount,
+                Price = dto.Price,
+                ModifiedAt = dto.ModifiedAt,
+                CreatedAt = dto.CreatedAt
+            };
+
+            await _context.Product.AddAsync(domain);
+            await _context.SaveChangesAsync();
+
+            return domain;
         }
     }
 }

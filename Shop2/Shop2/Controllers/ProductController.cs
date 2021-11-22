@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Shop2.Data;
 using Shop2.Models.Product;
 using Shop2.Core.ServiceInterface;
+using Shop2.Core.Dtos;
 
 namespace Shop2.Controllers
 {
@@ -52,7 +53,32 @@ namespace Shop2.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View("Edit");
+            ProductViewModel model = new ProductViewModel();
+
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(ProductViewModel model)
+        {
+            var dto = new ProductDto()
+            {
+                Id = model.Id,
+                Description = model.Description,
+                Name = model.Name,
+                Ammount = model.Ammount,
+                Price = model.Price,
+                ModifiedAt = model.ModifiedAt,
+                CreatedAt = model.CreatedAt
+            };
+
+            var result = await _productService.Add(dto);
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
