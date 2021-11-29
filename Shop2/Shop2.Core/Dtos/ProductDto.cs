@@ -1,5 +1,7 @@
 ﻿using System;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using 
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,5 +18,8 @@ namespace Shop2.Core.Dtos
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
 
+        public List<IFormFile> Files { get; set; }
+
+        public List<ExistingFilePathDto> ExistingFilePaths { get; set; } = new List<ExistingFilePathDto>();
     }
 }

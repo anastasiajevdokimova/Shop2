@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Shop2.Models.Files;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shop2.Models.Product
 {
@@ -14,5 +13,7 @@ namespace Shop2.Models.Product
         public int Ammount { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
+
+        public List<ExistingFilePathViewModel> ExistingFilePaths { get; set; } = new List<ExistingFilePathViewModel>;
     }
 }

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shop2.Models.Product
 {
     public class ProductListViewModel
     {
-        public  Guid Id { get; set; }
+        public  Guid? Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }

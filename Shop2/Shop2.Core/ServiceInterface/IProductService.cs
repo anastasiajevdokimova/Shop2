@@ -12,5 +12,7 @@ namespace Shop2.Core.ServiceInterface
         Task<Product> Add(ProductDto dto);
 
         Task<Product> Edit(Guid id);
+
+        Task<Product> Update(ProductDto dto);
     }
 }
