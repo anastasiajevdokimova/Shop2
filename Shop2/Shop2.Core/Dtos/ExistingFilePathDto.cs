@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Shop2.Core.Dtos
 {
-    class ExistingFilePathDto
+    public class ExistingFilePathDto
     {
+        public Guid PhotoId { get; set; }
+        public string FilePath { get; set; }
+        public Guid ProductId { get; set; }
     }
 }

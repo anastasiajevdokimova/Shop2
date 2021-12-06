@@ -1,4 +1,5 @@
-﻿using Shop2.Models.Files;
+﻿using Microsoft.AspNetCore.Http;
+using Shop2.Models.Files;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +15,8 @@ namespace Shop2.Models.Product
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
 
-        public List<ExistingFilePathViewModel> ExistingFilePaths { get; set; } = new List<ExistingFilePathViewModel>;
+        public List<IFormFile> Files { get; set; }
+
+        public List<ExistingFilePathViewModel> ExistingFilePaths { get; set; } = new List<ExistingFilePathViewModel>();
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using 
+using System.Collections.Generic; 
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +19,6 @@ namespace Shop2.Core.Dtos
 
         public List<IFormFile> Files { get; set; }
 
-        public List<ExistingFilePathDto> ExistingFilePaths { get; set; } = new List<ExistingFilePathDto>();
+        public IEnumerable<ExistingFilePathDto> ExistingFilePaths { get; set; } = new List<ExistingFilePathDto>();
     }
 }
