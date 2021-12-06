@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +13,11 @@ namespace Shop2.ApplicationServices.Services
     public class ProductServices : IProductService
     {
         private readonly Shop2DbContext _context;
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         public ProductServices
             (
             Shop2DbContext context,
-            IHostingEnvironment env
+            IWebHostEnvironment env
             )
         {
             _context = context;
@@ -41,7 +38,7 @@ namespace Shop2.ApplicationServices.Services
         {
             Product product = new Product();
 
-            product.Id = dto.Id;
+            product.Id = Guid.NewGuid();
             product.Description = dto.Description;
             product.Name = dto.Name;
             product.Ammount = dto.Ammount;
@@ -68,7 +65,7 @@ namespace Shop2.ApplicationServices.Services
         {
             Product product = new Product();
 
-            product.Id = dto.Id;
+            product.Id = Guid.NewGuid();
             product.Description = dto.Description;
             product.Name = dto.Name;
             product.Ammount = dto.Ammount;
@@ -88,9 +85,13 @@ namespace Shop2.ApplicationServices.Services
 
             if (dto.Files != null && dto.Files.Count > 0)
             {
+                if (!Directory.Exists(_env.WebRootPath + "\\multipleFileUpload\\"))
+                {
+                    Directory.CreateDirectory(_env.WebRootPath + "\\multipleFileUpload\\");
+                }
                 foreach (var photo in dto.Files)
                 {
-                    string uploadsFolder = Path.Combine(_env.ContentRootPath, "multipleFileUpload");
+                    string uploadsFolder = Path.Combine(_env.WebRootPath, "multipleFileUpload");
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName; //у каждого файла уникальное имя
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 

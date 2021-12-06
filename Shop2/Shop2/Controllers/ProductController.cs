@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Shop2.Data;
@@ -8,6 +7,7 @@ using Shop2.Models.Product;
 using Shop2.Core.ServiceInterface;
 using Shop2.Core.Dtos;
 using Shop2.Models.Files;
+using Microsoft.EntityFrameworkCore;
 
 namespace Shop2.Controllers
 {
@@ -70,7 +70,15 @@ namespace Shop2.Controllers
                 Ammount = model.Ammount,
                 Price = model.Price,
                 ModifiedAt = model.ModifiedAt,
-                CreatedAt = model.CreatedAt
+                CreatedAt = model.CreatedAt,
+                Files = model.Files,
+                ExistingFilePaths = model.ExistingFilePaths
+                .Select(x => new ExistingFilePathDto
+                {
+                    PhotoId = x.PhotoId,
+                    FilePath = x.FilePath,
+                    ProductId = x.ProductId
+                }).ToArray()
             };
 
             var result = await _productService.Add(dto);
@@ -92,6 +100,15 @@ namespace Shop2.Controllers
                 return NotFound();
             }
 
+            var photos = await _context.ExistingFilePaths
+                .Where(x => x.ProductId == id)
+                .Select(y => new ExistingFilePathViewModel
+                {
+                    FilePath = y.FilePath,
+                    PhotoId = y.Id
+                })
+                .ToArrayAsync();
+
             var model = new ProductViewModel();
 
             model.Id = product.Id;
@@ -101,6 +118,7 @@ namespace Shop2.Controllers
             model.Price = product.Price;
             model.ModifiedAt = product.ModifiedAt;
             model.CreatedAt = product.CreatedAt;
+            model.ExistingFilePaths.AddRange(photos);
 
 
             return View(model);
