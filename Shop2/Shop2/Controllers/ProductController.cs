@@ -43,7 +43,10 @@ namespace Shop2.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(Guid id)
         {
+    
             var product = await _productService.Delete(id);
+
+
             if (product == null)
             {
                 RedirectToAction(nameof(Index));
@@ -155,6 +158,23 @@ namespace Shop2.Controllers
             }
 
             return RedirectToAction(nameof(Index), model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveImage(ExistingFilePathViewModel model)
+        {
+            var dto = new ExistingFilePathDto()
+            {
+                PhotoId = model.PhotoId
+            };
+
+            var image = await _productService.RemoveImage(dto);
+            if (image == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
