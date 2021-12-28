@@ -52,7 +52,7 @@ namespace Shop2.Controllers
                 RedirectToAction(nameof(Index));
             }
             return RedirectToAction(nameof(Index), product);
-            return RedirectToAction(nameof(Index);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
