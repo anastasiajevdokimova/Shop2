@@ -41,6 +41,11 @@ namespace Shop2.Controllers
 
         return View(result);
     }
-}
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View("Edit");
+        }
+    }
 
 }
