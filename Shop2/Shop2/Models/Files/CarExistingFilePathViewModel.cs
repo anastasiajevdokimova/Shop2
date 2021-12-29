@@ -7,5 +7,8 @@ namespace Shop2.Models.Files
 {
     public class CarExistingFilePathViewModel
     {
+        public Guid PhotoId { get; set; }
+        public string FilePath { get; set; }
+        public Guid? CarId { get; set; }
     }
 }

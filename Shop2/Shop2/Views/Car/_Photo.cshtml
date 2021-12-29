@@ -1,5 +1,10 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Shop2.Models.Files.CarExistingFilePathViewModel
+
 @{
+    var photoPaths = "~/carFileUpload/" + (Model.FilePath ?? "noimage.jpg"); //если картинки нет ставим noimage.jpg
 }
+
+<div class="form-group row col-sm-4 offset-2">
+    <img class="card-img-top" src="photoPaths" asp-append-version="true" />
+    <input asp-action="removeImage" asp-controller="car" asp-for="PhotoId" type="submit" class="btn btn-danger" value="Remove Image" />
+</div> 

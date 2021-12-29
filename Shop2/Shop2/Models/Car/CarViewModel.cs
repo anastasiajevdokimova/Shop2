@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Shop2.Models.Files;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,5 +22,8 @@ namespace Shop2.Models.Car
         public double Price { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
+        public List<IFormFile> Files { get; set; }
+
+        public List<CarExistingFilePathViewModel> CarExistingFilePaths { get; set; } = new List<CarExistingFilePathViewModel>();
     }
 }

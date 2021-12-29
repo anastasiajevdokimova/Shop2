@@ -1,7 +1,15 @@
 ﻿@model Shop2.Models.Car.CarViewModel
 
 
-<h1>Add</h1>
+@if (Model.Id.HasValue)
+{
+    <h1>Update</h1>
+}
+else
+{
+    <h1>Add</h1>
+}
+
 
 
 <div>
@@ -80,10 +88,32 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <label asp-for="Files" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-5">
+                <div class="custom-file">
+                    <input class="form-control custom-file-input" asp-for="Files" multiple type="file" />
+                    <label class="custom-file-label">Choose file...</label>
+                </div>
+            </div>
+        </div>
 
+        @foreach (var photo in Model.CarExistingFilePaths)
+        {
+            <partial name="_Photo" model="photo" />
+        }
 
-        <input asp-action="add" asp-controller="car" type="submit" class="btn btn-primary" value="Add">
-        <a asp-action="index" class="btn btn-primary">Index</a>
+        @if (Model.Id.HasValue)
+        {
+            <input asp-action="update" asp-controller="car" type="submit" class="btn btn-primary" value="Update">
+            <input asp-action="delete" asp-controller="car" asp-for="Id" type="submit" class="btn btn-danger" value="Delete">
+        }
+        else
+        {
+            <input asp-action="add" asp-controller="car" type="submit" class="btn btn-primary" value="Add">
+        }
+
+        <a asp-action="index" class="btn btn-primary">Back</a>
 
     </form>
 </div> 

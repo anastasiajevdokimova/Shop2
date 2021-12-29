@@ -21,5 +21,7 @@ namespace Shop2.Core.Domain
         public double Price { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
+
+        public IEnumerable<CarExistingFilePath> CarExistingFilePaths { get; set; } = new List<CarExistingFilePath>();
     }
 }
