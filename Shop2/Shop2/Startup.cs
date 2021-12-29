@@ -35,6 +35,7 @@ namespace Shop2
             options.UseSqlServer(_config["DefaultConnection"]));
 
             services.AddScoped<IProductService, ProductServices>();
+            services.AddScoped<ICarService, CarServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
