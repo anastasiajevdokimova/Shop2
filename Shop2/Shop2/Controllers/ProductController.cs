@@ -15,16 +15,18 @@ namespace Shop2.Controllers
     {
         private readonly Shop2DbContext _context;
         private readonly IProductService _productService;
+        private readonly IFileServices _fileService;
 
         public ProductController
             (
                 Shop2DbContext context,
-                IProductService productService
-
+                IProductService productService,
+                IFileServices fileService
             )
         {
             _context = context;
             _productService = productService;
+            _fileService = fileService;
         }
         public IActionResult Index()
         {
@@ -165,10 +167,10 @@ namespace Shop2.Controllers
         {
             var dto = new ExistingFilePathDto()
             {
-                PhotoId = model.PhotoId
+               FilePath = model.FilePath
             };
 
-            var image = await _productService.RemoveImage(dto);
+            var image = await _fileService.RemoveImage(dto);
             if (image == null)
             {
                 return RedirectToAction(nameof(Index));
