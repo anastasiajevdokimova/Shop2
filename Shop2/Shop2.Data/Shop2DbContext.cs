@@ -12,9 +12,7 @@ namespace Shop2.Data
         public Shop2DbContext(DbContextOptions<Shop2DbContext> options)
             : base(options) { }
 
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Car> Car { get; set; }
-        public DbSet<ExistingFilePath> ExistingFilePaths { get; set; }
-        public DbSet<CarExistingFilePath> CarExistingFilePaths { get; set; }
+               public DbSet<Car> Car { get; set; }
+             public DbSet<CarExistingFilePath> CarExistingFilePaths { get; set; }
     }
 }
