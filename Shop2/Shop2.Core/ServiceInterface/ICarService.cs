@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace Shop2.Core.ServiceInterface
 {
-    public interface ICarService
+    public interface ICarService : IApplicationService
     {
         Task<Car> Add(CarDto dto);
         Task<Car> Edit(Guid id);
         Task<Car> Update(CarDto dto);
         Task<Car> Delete(Guid id);
-        Task<CarExistingFilePath> RemoveImage(CarExistingFilePathDto dto);
     }
 }

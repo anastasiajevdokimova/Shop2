@@ -8,7 +8,7 @@ namespace Shop2.Core.Domain
 {
     public class CarExistingFilePath
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         public string FilePath { get; set; }
         public Guid? CarId { get; set; }
     }

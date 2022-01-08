@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop2.Core.ServiceInterface
 {
-    interface IApplicationService
+    public interface IApplicationService
     {
     }
 }

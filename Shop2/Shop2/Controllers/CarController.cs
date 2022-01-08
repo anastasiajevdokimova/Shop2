@@ -17,16 +17,19 @@ namespace Shop2.Controllers
     {
         private readonly Shop2DbContext _context;
         private readonly ICarService _carService;
+        private readonly IFileServices _fileService;
 
 
         public CarController
             (
                 Shop2DbContext context,
-                ICarService carService
+                ICarService carService,
+                IFileServices fileService
             )
         {
             _context = context;
             _carService = carService;
+            _fileService = fileService;
 
         }
         public IActionResult Index()
@@ -164,10 +167,10 @@ namespace Shop2.Controllers
         {
             var dto = new CarExistingFilePathDto()
             {
-                PhotoId = cmodel.PhotoId
+                FilePath = cmodel.FilePath
             };
 
-            var image = await _carService.RemoveImage(dto);
+            var image = await _fileService.RemoveImage(dto);
             if (image == null)
             {
                 return RedirectToAction(nameof(Index));
