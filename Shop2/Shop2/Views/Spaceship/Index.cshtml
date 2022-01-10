@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Shop2.Models.Spaceship.SpaceshipListViewModel>
+
+@{
+    int queueNumber = 0;
+}
+<div>
+    <a asp-action="add" asp-controller="Spaceship" type="submit" class="btn btn-outline-success">Add</a>
+</div>
+
+<form method="post">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Mass</th>
+                <th scope="col">Prize</th>
+                <th scope="col">Crew</th>
+                <th scope="col">ConstructedAt</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var spaceship in Model)
+            {
+                queueNumber++;
+
+                <tr>
+                    <td class="">@queueNumber</td>
+                    <td class="">@spaceship.Name</td>
+                    <td class="">@spaceship.Type</td>
+                    <td class="">@spaceship.Mass</td>
+                    <td class="">@spaceship.Prize</td>
+                    <td class="">@spaceship.Crew</td>
+                    <td class="">@spaceship.ConstructedAt</td>
+                    <td>
+                        <a asp-action="edit" asp-controller="Spaceship" asp-route-id="@spaceship.Id" class="btn btn-primary">Edit</a>
+                        <input asp-action="delete" asp-controller="Spaceship" asp-route-id="@spaceship.Id" type="submit" class="btn btn-danger" value="Delete" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
