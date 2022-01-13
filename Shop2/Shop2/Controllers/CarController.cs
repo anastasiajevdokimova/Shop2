@@ -107,6 +107,15 @@ namespace Shop2.Controllers
                 return NotFound();
             }
 
+            var photos = await _context.CarExistingFilePaths
+                .Where(x => x.CarId == id)
+                .Select(y => new CarExistingFilePathViewModel
+                {
+                    FilePath = y.FilePath,
+                    PhotoId = y.Id
+                })
+                .ToArrayAsync();
+
 
             var cmodel = new CarViewModel();
 
@@ -121,6 +130,7 @@ namespace Shop2.Controllers
             cmodel.Transmission = car.Transmission;
             cmodel.Drivetrain = car.Drivetrain;
             cmodel.Price = car.Price;
+            cmodel.CarExistingFilePaths.AddRange(photos);
 
 
             return View(cmodel);
@@ -160,6 +170,19 @@ namespace Shop2.Controllers
             }
 
             return RedirectToAction(nameof(Index), cmodel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+
+            var car = await _carService.Delete(id);
+
+
+            if (car == null)
+            {
+                RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index), car);
         }
 
         [HttpPost]
