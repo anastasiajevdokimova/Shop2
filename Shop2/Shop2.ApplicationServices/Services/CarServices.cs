@@ -62,7 +62,7 @@ namespace Shop2.ApplicationServices.Services
         {
             Car car = new Car();
 
-            car.Id = Guid.NewGuid();
+            car.Id = dto.Id;
             car.Make = dto.Make;
             car.Model = dto.Model;
             car.Bodytype = dto.Bodytype;
