@@ -16,5 +16,6 @@ namespace Shop2.Data
         public DbSet<ExistingFilePath> ExistingFilePaths { get; set; }
 
         public DbSet<Spaceship> Spaceship { get; set; }
+        public DbSet<FileToDatabase> FileToDatabase { get; set; }
     }
 }
