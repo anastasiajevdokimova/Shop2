@@ -50,7 +50,8 @@ namespace Shop2.ApplicationServices.Services
         public async Task<Spaceship> Update(SpaceshipDto dto)
         {
             Spaceship spaceship = new Spaceship();
-            spaceship.Id = Guid.NewGuid();
+
+            spaceship.Id = dto.Id;
             spaceship.Name = dto.Name;
             spaceship.Type = dto.Type;
             spaceship.Mass = dto.Mass;
@@ -58,7 +59,7 @@ namespace Shop2.ApplicationServices.Services
             spaceship.Crew = dto.Crew;
             spaceship.ConstructedAt = dto.ConstructedAt;
             spaceship.CreatedAt = dto.CreatedAt;
-            spaceship.ModifiedAt = dto.ModifiedAt;
+            spaceship.ModifiedAt = dto.ModifiedAt; ;
 
             _context.Spaceship.Update(spaceship);
             await _context.SaveChangesAsync();

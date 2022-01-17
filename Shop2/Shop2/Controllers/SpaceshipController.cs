@@ -77,7 +77,7 @@ namespace Shop2.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
             var spaceship = await _spaceshipService.Edit(id);

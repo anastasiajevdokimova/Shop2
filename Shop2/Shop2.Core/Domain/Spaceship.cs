@@ -10,7 +10,7 @@ namespace Shop2.Core.Domain
     public class Spaceship
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         public double Mass { get; set; }
