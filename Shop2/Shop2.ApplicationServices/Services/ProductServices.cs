@@ -78,7 +78,7 @@ namespace Shop2.ApplicationServices.Services
         {
             Product product = new Product();
 
-            product.Id = Guid.NewGuid();
+            product.Id = dto.Id;
             product.Description = dto.Description;
             product.Name = dto.Name;
             product.Ammount = dto.Ammount;
