@@ -26,7 +26,6 @@
 
 	<ItemGroup>
 		<Folder Include="Views\Photo\" />
-		<Folder Include="wwwroot\carFileUpload\" />
 	</ItemGroup>
 
 	<ItemGroup>

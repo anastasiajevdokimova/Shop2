@@ -32,6 +32,7 @@ namespace Shop2.ApplicationServices.Services
                 .FirstOrDefaultAsync(x => x.FilePath == dto.FilePath);
 
             string photoPath = _env.WebRootPath + "\\carFileUpload\\" + dto.FilePath;
+         
             File.Delete(photoPath);
 
             _context.CarExistingFilePaths.Remove(imageId);
@@ -49,6 +50,7 @@ namespace Shop2.ApplicationServices.Services
                 .FirstOrDefaultAsync(x => x.FilePath == dtos.FilePath);
 
                 string photoPath = _env.WebRootPath + "\\carFileUpload\\" + dtos.FilePath;
+                
                 File.Delete(photoPath);
 
                 _context.CarExistingFilePaths.Remove(fileId);
