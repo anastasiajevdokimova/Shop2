@@ -29,13 +29,13 @@ namespace Shop2.ApplicationServices.Services
                 .FirstOrDefaultAsync(x => x.FilePath == dto.FilePath);
 
             string photoPath = _env.WebRootPath + "\\multipleFileUpload\\" + dto.FilePath;
+
             File.Delete(photoPath);
 
             _context.ExistingFilePaths.Remove(imageId);
             await _context.SaveChangesAsync();
 
             return imageId;
-
         }
 
         public async Task<ExistingFilePath> RemoveImages(ExistingFilePathDto[] dto)
