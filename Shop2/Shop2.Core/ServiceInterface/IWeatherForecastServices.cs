@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop2.Core.Dtos.Weather;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Shop2.Core.ServiceInterface
 {
     public interface IWeatherForecastServices
     {
-        string WeatherResponse(string city);
+        //string WeatherResponse(string city);
+        WeatherResultDto GetResponse(string city);
     }
 }

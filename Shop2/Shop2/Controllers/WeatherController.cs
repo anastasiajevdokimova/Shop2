@@ -23,7 +23,7 @@ namespace Shop2.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult SearchCity()
         {
             SearchCity sc = new SearchCity();
 
@@ -31,34 +31,34 @@ namespace Shop2.Controllers
         }
 
         [HttpPost]
-        public IActionResult City(SearchCity model)
+        public IActionResult SearchCity(SearchCity model)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("City", "Weather", new { city = model.CityName });
             }
             return View(model);
         }
 
-        public IActionResult SearchCity(string city)
+        [HttpGet]
+        public IActionResult City(string city)
         {
-            var weatherResponse = _weatherForecastServices.WeatherResponse(city);
-            WeatherResultViewModel model = new WeatherResultViewModel();
+            WeatherResultDto weatherResponse = _weatherForecastServices.GetResponse(city);
+            CityViewModel model = new CityViewModel();
             WeatherResultDto dto = new WeatherResultDto();
-            HeadlineDto headlineDto = new HeadlineDto();
 
             if (weatherResponse != null)
             {
                 //Headline
-                model.EffectiveDate = headlineDto.EffectiveDate;
-                model.EffectiveEpochDate = headlineDto.EffectiveEpochDate;
-                model.Severity = headlineDto.Severity;
-                model.Text = headlineDto.Text;
-                model.Category = headlineDto.Category;
-                model.EndDate = headlineDto.EndDate;
-                model.EndEpochDate = headlineDto.EndEpochDate;
-                model.MobileLink = headlineDto.MobileLink;
-                model.Link = headlineDto.Link;
+                model.EffectiveDate = weatherResponse.EffectiveDate;
+                model.EffectiveEpochDate = weatherResponse.EffectiveEpochDate;
+                model.Severity = weatherResponse.Severity;
+                model.Text = weatherResponse.Text;
+                model.Category = weatherResponse.Category;
+                model.EndDate = weatherResponse.EndDate;
+                model.EndEpochDate = weatherResponse.EndEpochDate;
+                model.MobileLink = weatherResponse.MobileLink;
+                model.Link = weatherResponse.Link;
                 //DailyForecasts
                 model.Date = dto.Date;
                 model.EpochDate = dto.EpochDate;
