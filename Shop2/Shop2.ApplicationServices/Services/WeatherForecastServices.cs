@@ -17,78 +17,58 @@ namespace Shop2.ApplicationServices.Services
 {
     public class WeatherForecastServices : IWeatherForecastServices
     {
-        WeatherResultDto IWeatherForecastServices.GetResponse(string city)
+        public async Task<WeatherResultDto> WeatherDetail(WeatherResultDto dto)
         {
-            string idWeather = "YjhxFOy76ijmCOWvahkPo2Z9lqpk9ot4"; //APi key
-            var Location = "127964";
-            var url = $"http://dataservice.accuweather.com/forecasts/v1/daily/1day/{Location}?apikey=YjhxFOy76ijmCOWvahkPo2Z9lqpk9ot4&language=en-us&details=false&metric=true";
-            var url2 = new RestClient($"http://dataservice.accuweather.com/forecasts/v1/daily/1day/127964?apikey=YjhxFOy76ijmCOWvahkPo2Z9lqpk9ot4&language=en-us&details=false&metric=true");
+            string apikey = "YjhxFOy76ijmCOWvahkPo2Z9lqpk9ot4"; //APi key
+            var url = $"http://dataservice.accuweather.com/forecasts/v1/daily/1day/127964?apikey=YjhxFOy76ijmCOWvahkPo2Z9lqpk9ot4&language=en-us&details=false&metric=true";
 
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = url2.Execute(request);
-
-            if (response.IsSuccessful)
+            
+            using (WebClient client = new WebClient())
             {
-                var content = JsonConvert.DeserializeObject<JToken>(response.Content);
+                string json = client.DownloadString(url);
 
-                return content.ToObject<WeatherResultDto>();
+                WeatherRootDto weatherInfo = new JavaScriptSerializer().Deserialize<WeatherRootDto>(json);
+                
+
+                //Headline
+                dto.EffectiveDate = weatherInfo.Headline.EffectiveDate;
+                dto.EffectiveEpochDate = weatherInfo.Headline.EffectiveEpochDate;
+                dto.Severity = weatherInfo.Headline.Severity;
+                dto.Text = weatherInfo.Headline.Text;
+                dto.Category = weatherInfo.Headline.Category;
+                dto.EndDate = weatherInfo.Headline.EndDate;
+                dto.EndEpochDate = weatherInfo.Headline.EndEpochDate;
+
+                dto.MobileLink = weatherInfo.Headline.MobileLink;
+                dto.Link = weatherInfo.Headline.Link;
+                
+                dto.TempMinValue = weatherInfo.DailyForecasts[0].Temperature.Minimum.Value;
+                dto.TempMinUnit = weatherInfo.DailyForecasts[0].Temperature.Minimum.Unit;
+                dto.TempMinUnitType = weatherInfo.DailyForecasts[0].Temperature.Minimum.UnitType;
+
+                dto.TempMaxValue = weatherInfo.DailyForecasts[0].Temperature.Maximum.Value;
+                dto.TempMaxUnit = weatherInfo.DailyForecasts[0].Temperature.Maximum.Unit;
+                dto.TempMaxUnitType = weatherInfo.DailyForecasts[0].Temperature.Maximum.UnitType;
+              
+                dto.DayIcon = weatherInfo.DailyForecasts[0].Day.Icon;
+                dto.DayIconPhrase = weatherInfo.DailyForecasts[0].Day.IconPhrase;
+                dto.DayHasPrecipitation = weatherInfo.DailyForecasts[0].Day.HasPrecipitation;
+                dto.DayPrecipitationType = weatherInfo.DailyForecasts[0].Day.PrecipitationType;
+                dto.DayPrecipitationIntensity = weatherInfo.DailyForecasts[0].Day.PrecipitationIntensity;
+              
+                dto.NightIcon = weatherInfo.DailyForecasts[0].Night.Icon;
+                dto.NightIconPhrase = weatherInfo.DailyForecasts[0].Night.IconPhrase;
+                dto.NightHasPrecipitation = weatherInfo.DailyForecasts[0].Night.HasPrecipitation;
+                dto.NightPrecipitationType = weatherInfo.DailyForecasts[0].Night.PrecipitationType;
+                dto.NightPrecipitationIntensity = weatherInfo.DailyForecasts[0].Night.PrecipitationIntensity;
+
+                var jsonString = new JavaScriptSerializer().Serialize(dto);
+
             }
-            //using (WebClient client = new WebClient())
-            //{
-            //    string json = client.DownloadString(url);
-
-            //    DailyForecastDto weatherInfo = (new JavaScriptSerializer()).Deserialize<DailyForecastDto>(json);
-            //    HeadlineDto headlineInfo = (new JavaScriptSerializer()).Deserialize<HeadlineDto>(json);
-
-            //    WeatherResultDto result = new WeatherResultDto();
-
-            //    //Headline
-            //    result.EffectiveDate = headlineInfo.EffectiveDate;
-            //    result.EffectiveEpochDate = headlineInfo.EffectiveEpochDate;
-            //    result.Severity = headlineInfo.Severity;
-            //    result.Text = headlineInfo.Text;
-            //    result.Category = headlineInfo.Category;
-            //    result.EndDate = headlineInfo.EndDate;
-            //    result.EndEpochDate = headlineInfo.EndEpochDate;
-            //    result.MobileLink = headlineInfo.MobileLink;
-            //    result.Link = headlineInfo.Link;
-            //    //DailyForecasts
-            //    result.Date = weatherInfo.Date;
-            //    result.EpochDate = weatherInfo.EpochDate;
-            //    //Temperature:
-            //    //Minimum
-            //    MinimumDto minimumDto = new MinimumDto();
-            //    result.TempMinValue = minimumDto.Value;
-            //    result.TempMinUnit = minimumDto.Unit;
-            //    result.TempMinUnitType = minimumDto.UnitType;
-            //    //Maximum
-            //    MaximumDto maximumDto = new MaximumDto();
-            //    result.TempMaxValue = maximumDto.Value;
-            //    result.TempMaxUnit = maximumDto.Unit;
-            //    result.TempMaxUnitType = maximumDto.UnitType;
-            //    //Day
-            //    DayDto dayDto = new DayDto();
-            //    result.DayIcon = dayDto.Icon;
-            //    result.DayIconPhrase = dayDto.IconPhrase;
-            //    result.DayHasPrecipitation = dayDto.HasPrecipitation;
-            //    result.DayPrecipitationType = dayDto.PrecipitationType;
-            //    result.DayPrecipitationIntensity = dayDto.PrecipitationIntensity;
-            //    //Night
-            //    NightDto nightDto = new NightDto();
-            //    result.NightIcon = nightDto.Icon;
-            //    result.NightIconPhrase = nightDto.IconPhrase;
-            //    result.NightHasPrecipitation = nightDto.HasPrecipitation;
-            //    result.NightPrecipitationType = nightDto.PrecipitationType;
-            //    result.NightPrecipitationIntensity = nightDto.PrecipitationIntensity;
-
-            //    var jsonString = new JavaScriptSerializer().Serialize(result);
-
-            //    return jsonString;
-
-            //}
-            return null;
+            return dto;
         }
 
+        
         
 
     }

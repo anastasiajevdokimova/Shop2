@@ -10,66 +10,66 @@ namespace Shop2.Core.Dtos.Weather
     public class WeatherResultDto
     {
         //Headline
-        //[JsonProperty("EffectiveDate")]
+        [JsonProperty("EffectiveDate")]
         public string EffectiveDate { get; set; }
-        //[JsonProperty("EffectiveEpochDate")]
+        [JsonProperty("EffectiveEpochDate")]
         public Int64 EffectiveEpochDate { get; set; }
-        //[JsonProperty("Severity")]
+        [JsonProperty("Severity")]
         public int Severity { get; set; }
-        //[JsonProperty("Text")]
+        [JsonProperty("Text")]
         public string Text { get; set; }
-        //[JsonProperty("Category")]
+        [JsonProperty("Category")]
         public string Category { get; set; }
-        //[JsonProperty("EndDate")]
+        [JsonProperty("EndDate")]
         public string EndDate { get; set; }
-        //[JsonProperty("EndEpochDate")]
+        [JsonProperty("EndEpochDate")]
         public Int64 EndEpochDate { get; set; }
-        //[JsonProperty("MobileLink")]
+        [JsonProperty("MobileLink")]
         public string MobileLink { get; set; }
-        //[JsonProperty("Link")]
+        [JsonProperty("Link")]
         public string Link { get; set; }
 
         //DailyForecasts
-        //[JsonProperty("Date")]
+        [JsonProperty("Date")]
         public string Date { get; set; }
-        //[JsonProperty("EpochDate")]
+        [JsonProperty("EpochDate")]
         public Int64 EpochDate { get; set; }
         //Temperature:
         //Minimum
-        //[JsonProperty("TempMinValue")]
+        [JsonProperty("TempMinValue")]
         public double TempMinValue { get; set; }
-        //[JsonProperty("TempMinUnit")]
+        [JsonProperty("TempMinUnit")]
         public string TempMinUnit { get; set; }
-        //[JsonProperty("TempMinUnitType")]
+        [JsonProperty("TempMinUnitType")]
         public int TempMinUnitType { get; set; }
         //Maximum
-        //[JsonProperty("TempMaxValue")]
+        [JsonProperty("TempMaxValue")]
         public double TempMaxValue { get; set; }
-        //[JsonProperty("TempMaxUnit")]
+        [JsonProperty("TempMaxUnit")]
         public string TempMaxUnit { get; set; }
-        //[JsonProperty("TempMaxUnitType")]
+        [JsonProperty("TempMaxUnitType")]
         public int TempMaxUnitType { get; set; }
         //Day
-        //[JsonProperty("DayIcon")]
+        [JsonProperty("DayIcon")]
         public int DayIcon { get; set; }
-        //[JsonProperty("DayIconPhrase")]
+        [JsonProperty("DayIconPhrase")]
         public string DayIconPhrase { get; set; }
-        //[JsonProperty("DayHasPrecipitation")]
+        [JsonProperty("DayHasPrecipitation")]
         public bool DayHasPrecipitation { get; set; }
-        //[JsonProperty("DayPrecipitationType")]
+        [JsonProperty("DayPrecipitationType")]
         public string DayPrecipitationType { get; set; }
-        //[JsonProperty("DayPrecipitationIntensity")]
+        [JsonProperty("DayPrecipitationIntensity")]
         public string DayPrecipitationIntensity { get; set; }
         //Night
-        //[JsonProperty("NightIcon")]
+        [JsonProperty("NightIcon")]
         public int NightIcon { get; set; }
-        //[JsonProperty("NightIconPhrase")]
+        [JsonProperty("NightIconPhrase")]
         public string NightIconPhrase { get; set; }
-        //[JsonProperty("NightHasPrecipitation")]
+        [JsonProperty("NightHasPrecipitation")]
         public bool NightHasPrecipitation { get; set; }
-        //[JsonProperty("NightPrecipitationType")]
+        [JsonProperty("NightPrecipitationType")]
         public string NightPrecipitationType { get; set; }
-        //[JsonProperty("NightPrecipitationIntensity")]
+        [JsonProperty("NightPrecipitationIntensity")]
         public string NightPrecipitationIntensity { get; set; }
 
 
