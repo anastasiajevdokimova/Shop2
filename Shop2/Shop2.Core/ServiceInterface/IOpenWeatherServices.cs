@@ -9,6 +9,6 @@ namespace Shop2.Core.ServiceInterface
 {
     public interface IOpenWeatherServices
     {
-        Task<OpenWeatherResultDto> WeatherDetail(OpenWeatherResultDto dto)
+       Task<OpenWeatherResultDto> WeatherDetail(OpenWeatherResultDto dto);
     }
 }

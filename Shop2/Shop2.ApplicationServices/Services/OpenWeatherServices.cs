@@ -15,9 +15,11 @@ namespace Shop2.ApplicationServices.Services
         public async Task<OpenWeatherResultDto> WeatherDetail(OpenWeatherResultDto dto)
         {
             string apikey = "d7e4c8388840f164d4bd9f7804aec898";
-            var url = $"http://api.openweathermap.org/data/2.5/weather?q=London&limit=5&appid={apikey}";
+            //string name = "";
+            var url = $"http://api.openweathermap.org/data/2.5/weather?q=Tallinn&limit=5&units=metric&appid={apikey}";
+            //var url = $"http : //api.openweathermap.org/geo/1.0/direct?q=Tallinn&limit=5&units=metric&appid=ba56ad4fa94b4d0ec8ecac5bb9967e0e";
 
-            using(WebClient client = new WebClient())
+            using (WebClient client = new WebClient())
             {
                 string json = client.DownloadString(url);
 
