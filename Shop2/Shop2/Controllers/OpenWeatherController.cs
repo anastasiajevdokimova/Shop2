@@ -39,10 +39,12 @@ namespace Shop2.Controllers
             return View(model);
         }
         [HttpGet]
-        public IActionResult City()
+        public IActionResult City(string city)
         {
 
             OpenWeatherResultDto dto = new OpenWeatherResultDto();
+
+            dto.name = city;
 
             var weatherResponse = _openWeatherServices.WeatherDetail(dto);
 
