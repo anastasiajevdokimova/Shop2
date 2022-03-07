@@ -34,7 +34,7 @@ namespace Shop2.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("City", "OpenWeather", new { city = model.CityName });
+                return RedirectToAction("City", "OpenWeather", new { city = model.name });
             }
             return View(model);
         }
