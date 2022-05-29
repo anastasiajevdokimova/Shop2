@@ -38,6 +38,7 @@ namespace Shop2
             services.AddScoped<IFileServices, FileServices>();
             services.AddScoped<ISpaceshipService, SpaceshipServices>();
             services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
+            services.AddScoped<IOpenWeatherServices, OpenWeatherServices>();
 
         }
 

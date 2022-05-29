@@ -1,0 +1,85 @@
+﻿@model Shop2.Models.OpenWeather.OpenCityViewModel
+
+<h1>City</h1>
+
+<div class="container">
+    <div class="form-group col-md-3">
+        <h2> Open Weather Forecast</h2>
+
+        <label asp-for="name">City: </label>
+        <span class="badge">@Model.name</span>
+        <br />
+        <label asp-for="temp">Temperature: </label>
+        <span class="badge">@Model.temp ℃</span>
+        <br />
+        <label asp-for="feels_like">Temp Feels like: </label>
+        <span class="badge">@Model.feels_like ℃</span>
+        <br />
+        <label asp-for="humidity">Humidity: </label>
+        <span class="badge">@Model.humidity %</span>
+        <br />
+        <label asp-for="pressure">Pressure: </label>
+        <span class="badge">@Model.pressure Hpa</span>
+        <br />
+        <label asp-for="speed">Wind Speed: </label>
+        <span class="badge">@Model.speed Km/h</span>
+        <br />
+        <label asp-for="main">Weather Condition: </label>
+        <span class="badge">@Model.main</span>
+        <br />
+        <!--
+    <label asp-for="main"></label>
+    <span class="badge">@Model.main</span>
+    <br />
+    <label asp-for="description"></label>
+    <span class="badge">@Model.description</span>
+    <br />
+    <label asp-for="icon"></label>
+    <span class="badge">@Model.icon</span>
+    <br />
+    <label asp-for="temp_min"></label>
+    <span class="badge">@Model.temp_min</span>
+    <br />
+    <label asp-for="temp_max"></label>
+    <span class="badge">@Model.temp_max</span>
+    <br />
+    <label asp-for="visibility"></label>
+    <span class="badge">@Model.visibility</span>
+    <br />
+    <label asp-for="deg"></label>
+    <span class="badge">@Model.deg</span>
+    <br />
+    <label asp-for="all"></label>
+    <span class="badge">@Model.all</span>
+    <br />
+    <label asp-for="dt"></label>
+    <span class="badge">@Model.dt</span>
+    <br />
+    <label asp-for="type"></label>
+    <span class="badge">@Model.type</span>
+    <br />
+    <label asp-for="id"></label>
+    <span class="badge">@Model.id</span>
+    <br />
+    <label asp-for="message"></label>
+    <span class="badge">@Model.message</span>
+    <br />
+    <label asp-for="country"></label>
+    <span class="badge">@Model.country</span>
+    <br />
+    <label asp-for="sunrise"></label>
+    <span class="badge">@Model.sunrise</span>
+    <br />
+    <label asp-for="sunset"></label>
+    <span class="badge">@Model.sunset</span>
+    <br />
+    <label asp-for="timezone"></label>
+    <span class="badge">@Model.timezone</span>
+        -->
+    </div>
+</div>
+<div class="container">
+    <div class="form-group col-md-3 offset-md-5">
+        <a asp-action="OSearchCity" class="btn btn-primary">Back</a>
+    </div>
+</div>
